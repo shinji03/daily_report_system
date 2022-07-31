@@ -1,8 +1,9 @@
-@CHARSET "UTF-8";
+@charset "UTF-8";
 
 body {
     color: #333333;
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
+        Arial, sans-serif;
 }
 
 #header {
@@ -101,10 +102,11 @@ table#employee_list td {
 }
 
 tr.row1 {
-        background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
+
 tr.row0 {
-        background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 select {
@@ -122,8 +124,8 @@ select {
     color: #cccccc;
     width: 36%;
     padding-right: 3%;
-    text-align: right;
-    display: inline-block;
+    text-align:right;
+    display:inline-block;
 }
 
 #header a {
