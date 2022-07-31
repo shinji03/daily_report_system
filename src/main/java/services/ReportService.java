@@ -139,7 +139,7 @@ public class ReportService extends ServiceBase {
      * @return 取得データのインスタンス
      */
 
-    public Report findOneInternal(int id) {
+    private Report findOneInternal(int id) {
 
         return em.find(Report.class, id);
 
@@ -150,7 +150,7 @@ public class ReportService extends ServiceBase {
      * @param rv 日報データ
      */
 
-    public void createInternal(ReportView rv) {
+    private void createInternal(ReportView rv) {
 
         em.getTransaction().begin();
         em.persist(ReportConverter.toModel(rv));
