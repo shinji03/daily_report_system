@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,17 +17,16 @@ import services.ReportService;
  *
  */
 
-public class ReportAction extends ActionBase{
+public class ReportAction extends ActionBase {
 
     private ReportService service;
-
 
     /**
      * メソッドを実行する
      */
 
     @Override
-    public void process() throws ServletException, IOException{
+    public void process() throws ServletException, IOException {
 
         service = new ReportService();
 
@@ -42,7 +42,7 @@ public class ReportAction extends ActionBase{
      * @throws IOException
      */
 
-    public void index() throws ServletException, IOException{
+    public void index() throws ServletException, IOException {
 
         //指定されたページ数の一覧画面に表示する日報データを取得
         int page = getPage();
@@ -58,7 +58,7 @@ public class ReportAction extends ActionBase{
 
         //セッションにフラッシュメッセージが設定されている場合は、リクエストスコープに差し替え、セッションから削除する
         String flush = getSessionScope(AttributeConst.FLUSH);
-        if(flush != null) {
+        if (flush != null) {
             putRequestScope(AttributeConst.FLUSH, flush);
             removeSessionScope(AttributeConst.FLUSH);
 
@@ -66,6 +66,26 @@ public class ReportAction extends ActionBase{
 
         //一覧画面を表示
         forward(ForwardConst.FW_REP_INDEX);
+    }
+
+    /**
+     * 新規登録画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void entryNew() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+
+        //日報情報を空インスタンスに、日報の日付=今日の日付を設定する
+        ReportView rv = new ReportView();
+
+        rv.setReportDate(LocalDate.now());
+        putRequestScope(AttributeConst.REPORT, rv); //日付のみ設定済みの日報インスタンス
+
+        //新規登録画面を表示
+        forward(ForwardConst.FW_REP_NEW);
     }
 
 }
