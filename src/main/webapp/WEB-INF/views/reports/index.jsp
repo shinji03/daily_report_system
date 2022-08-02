@@ -11,12 +11,12 @@
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
-        <c:if test="${flush != null} }">
+        <c:if test="${flush != null}">
             <div id="flush_success">
-                <c:out value="${flush} }"></c:out>
+                <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>日報一覧</h2>
+        <h2>日報 一覧</h2>
         <table id="report_list">
             <tbody>
                 <tr>
@@ -29,7 +29,7 @@
                     <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd"
                         var="reportDay" type="date" />
 
-                    <tr class="row${status.count % 2 }">
+                    <tr class="row${status.count % 2}">
                         <td class="report_name"><c:out
                                 value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${reportDay}'
@@ -43,19 +43,17 @@
         </table>
 
         <div id="pagination">
-            (全 ${reports_count} 件) <br />
-
+            （全 ${reports_count} 件）<br />
             <c:forEach var="i" begin="1"
                 end="${((reports_count - 1) / maxRow) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
-                        <c:out value="${i }" />&nbsp;
+                        <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
                         <a
-                            href="<c:url value='?action=${actRep}&command=${commIdx}&page=${i}' />">
-                            <c:out value="${i}" />
-                        </a>&nbsp;
+                            href="<c:url value='?action=${actRep}&command=${commIdx}&page=${i}' />"><c:out
+                                value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
@@ -63,6 +61,6 @@
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commNew}' />">新規日報の登録</a>
         </p>
-    </c:param>
 
+    </c:param>
 </c:import>
