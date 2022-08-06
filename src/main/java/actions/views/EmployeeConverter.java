@@ -34,6 +34,13 @@ public class EmployeeConverter {
                                 ? JpaConst.ROLE_ADMIN
                                 : JpaConst.ROLE_GENERAL,
 
+                ev.getManagementFlag() == null
+                        ? null
+                        :ev.getManagementFlag() == AttributeConst.POSITION_MANAGER.getIntegerValue()
+                                ? JpaConst.POSITION_MANAGER
+                                : ev.getManagementFlag() == AttributeConst.POSITION_SUPERIOR.getIntegerValue()
+                                        ? JpaConst.POSITION_SUPERIOR
+                                        : JpaConst.POSITION_GENERAL,
                 ev.getCreatedAt(),
                 ev.getUpdatedAt(),
                 ev.getDeleteFlag() == null
@@ -66,6 +73,15 @@ public class EmployeeConverter {
                         : e.getAdminFlag() == JpaConst.ROLE_ADMIN
                                 ? AttributeConst.ROLE_ADMIN.getIntegerValue()
                                 : AttributeConst.ROLE_GENERAL.getIntegerValue(),
+
+                e.getManagementFlag() == null
+                        ? null
+                        :e.getManagementFlag() == JpaConst.POSITION_MANAGER
+                                ? AttributeConst.POSITION_MANAGER.getIntegerValue()
+                                : e.getManagementFlag() == JpaConst.POSITION_SUPERIOR
+                                        ? AttributeConst.POSITION_SUPERIOR.getIntegerValue()
+                                        : AttributeConst.POSITION_GENERAL.getIntegerValue(),
+
                 e.getCreatedAt(),
                 e.getUpdatedAt(),
                 e.getDeleteFlag() == null
@@ -108,6 +124,7 @@ public class EmployeeConverter {
         e.setName(ev.getName());
         e.setPassword(ev.getPassword());
         e.setAdminFlag(ev.getAdminFlag());
+        e.setManagementFlag(ev.getManagementFlag());
         e.setCreatedAt(ev.getCreatedAt());
         e.setUpdatedAt(ev.getUpdatedAt());
         e.setDeleteFlag(ev.getDeleteFlag());

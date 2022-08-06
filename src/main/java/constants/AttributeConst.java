@@ -32,10 +32,16 @@ public enum AttributeConst {
     EMP_PASS("password"),
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
+    EMP_MANAGEMENT_FLAG ("management_flag"),
 
     //管理者フラグ
     ROLE_ADMIN(1),
     ROLE_GENERAL(0),
+
+    //役職フラグ（Management）
+    POSITION_GENERAL(0), //一般職員
+    POSITION_SUPERIOR(1), // 上長追加
+    POSITION_MANAGER(2), // 部長追加
 
     //削除フラグ
     DEL_FLAG_TRUE(1),

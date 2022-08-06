@@ -24,10 +24,20 @@ public interface JpaConst {
     String EMP_COL_UPDATED_AT = "updated_at"; //更新日時
     String EMP_COL_DELETE_FLAG = "delete_flag"; //削除フラグ
 
+    //↓の内容を追加
+    String EMP_COL_MANAGEMENT_FLAG = "management_flag"; //管理職権限
+    //↑の内容を追加
+
     int ROLE_ADMIN = 1; //管理者権限ON(管理者)
     int ROLE_GENERAL = 0; //管理者権限OFF(一般)
     int EMP_DEL_TRUE = 1; //削除フラグON(削除済み)
     int EMP_DEL_FALSE = 0; //削除フラグOFF(現役)
+
+    //↓の内容を追加
+    int POSITION_GENERAL = 0; //一般職員
+    int POSITION_SUPERIOR = 1; // 上長
+    int POSITION_MANAGER = 2; // 部長
+    //↑の内容を追加
 
     //日報テーブル
     String TABLE_REP = "reports"; //テーブル名

@@ -85,6 +85,13 @@ public class Employee {
     private Integer adminFlag;
 
     /**
+     * 管理職権限があるかどうか（一般：0、上長：1、部長:2）
+     */
+
+    @Column(name = JpaConst.EMP_COL_MANAGEMENT_FLAG, nullable = false)
+    private Integer managementFlag;
+
+    /**
      *登録日時
      */
     @Column(name = JpaConst.EMP_COL_CREATED_AT, nullable = false)
