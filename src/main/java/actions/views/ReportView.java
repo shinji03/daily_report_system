@@ -55,4 +55,15 @@ public class ReportView {
      */
     private LocalDateTime updatedAt;
 
+    /**
+     * 承認フラグ
+     */
+    private Integer approvalFlag;
+
+    /**
+     * 承認日時
+     */
+    private LocalDateTime completedAt;
+
+
 }

@@ -121,6 +121,8 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
+                    null,
+                    toNumber(getRequestParam(AttributeConst.REP_APPROVAL_FLAG)),
                     null);
 
             //日報情報登録

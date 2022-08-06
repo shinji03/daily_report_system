@@ -3,6 +3,8 @@ package actions.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.AttributeConst;
+import constants.JpaConst;
 import models.Report;
 
 /**
@@ -28,7 +30,13 @@ public class ReportConverter {
                 rv.getTitle(),
                 rv.getContent(),
                 rv.getCreatedAt(),
-                rv.getUpdatedAt());
+                rv.getUpdatedAt(),
+                rv.getApprovalFlag() == null
+                        ? null
+                        : rv.getApprovalFlag() == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()
+                                ? JpaConst.APPROVAL_FLAF_TRUE
+                                : JpaConst.APPROVAL_FLAF_FALSE,
+                rv.getCompletedAt());
     }
 
     /**
@@ -50,7 +58,15 @@ public class ReportConverter {
                 r.getTitle(),
                 r.getContent(),
                 r.getCreatedAt(),
-                r.getUpdatedAt());
+                r.getUpdatedAt(),
+                r.getApprovalFlag() == null
+                        ? null
+                        : r.getApprovalFlag() == JpaConst.APPROVAL_FLAF_TRUE
+                                ? AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()
+                                : AttributeConst.APPROVAL_FLAF_FALSE.getIntegerValue(),
+                r.getCompletedAt()
+
+        );
     }
 
     /**
@@ -84,6 +100,8 @@ public class ReportConverter {
         r.setContent(rv.getContent());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
+        r.setApprovalFlag(rv.getApprovalFlag());
+        r.setCompletedAt(rv.getCompletedAt());
 
     }
 

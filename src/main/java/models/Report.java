@@ -98,4 +98,16 @@ public class Report {
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
+    /**
+     * 承認フラグ
+     */
+    @Column(name = JpaConst.REP_COL_APPROVAL_FLAG, nullable = false)
+    private Integer approvalFlag;
+
+    /**
+     * 承認日時
+     */
+    @Column(name = JpaConst.REP_COL_CREATED_AT, nullable = false)
+    private LocalDateTime completedAt;
+
 }
