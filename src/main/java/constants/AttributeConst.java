@@ -54,7 +54,11 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+
+    //承認フラグ
+    APPROVAL_FLAF_TRUE(1), //承認済み
+    APPROVAL_FLAF_FALSE(0); //未承認
 
     private final String text;
     private final Integer i;
