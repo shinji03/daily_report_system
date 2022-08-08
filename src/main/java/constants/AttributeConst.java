@@ -57,6 +57,16 @@ public enum AttributeConst {
     REP_CONTENT("content_msg"),
     REP_APPROVAL_FLAG("approval_flag"),
 
+    //商談管理
+    NEGOTINATION("negotiation"),
+    NEGOTINATIONS("negotiations"),
+    NEG_COUNT("negotiations_count"),
+    NEG_ID("id"),
+    NEG_DATE("negotiation_date"),
+    NEG_TITLE("title"),
+    NEG_CONTENT("content_msg"),
+    NEG_APPROVAL_FLAG("approval_flag"),
+
     //承認フラグ
     APPROVAL_FLAF_TRUE(1), //承認済み
     APPROVAL_FLAF_FALSE(0), //未承認
