@@ -63,6 +63,7 @@ public interface JpaConst {
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_NEG = "negotiation"; //商談
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -82,6 +83,7 @@ public interface JpaConst {
     //指定した社員番号を保持する従業員の件数を取得する
     String Q_EMP_COUNT_REGISTERED_BY_CODE = ENTITY_EMP + ".countRegisteredByCode";
 String Q_EMP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;;
+
     //全ての日報をidの降順に取得する
     String Q_REP_GET_ALL = ENTITY_REP + ".getAll";
     String Q_REP_GET_ALL_DEF = "SELECT r FROM Report AS r ORDER BY r.id DESC";
@@ -94,5 +96,36 @@ String Q_EMP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e 
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    //↓の内容を追加↓
+
+    //商談テーブル
+    String TABLE_NEG = "negotiations"; //テーブル名
+    //商談テーブルカラム
+    String NEG_COL_ID = "id"; //id
+    String NEG_COL_EMP = "employee_id"; //商談を作成した従業員のid
+    String NEG_COL_TITLE = "title"; //商談のタイトル
+    String NEG_COL_PAETNER = "partner";//商談の相手
+    String NEG_COL_CONTENT = "content"; //商談の内容
+    String NEG_COL_APPROVAL_FLAG = "approval_flag"; //完了ステータス
+    String NEG_COL_CREATED_AT = "created_at"; //登録日時
+    String NEG_COL_UPDATED_AT = "updated_at"; //更新日時
+
+    //全ての商談をidの降順に取得する
+    String Q_NEG_GET_ALL = ENTITY_NEG + ".getAll"; //name
+    String Q_NEG_GET_ALL_DEF = "SELECT n FROM Negotiation AS n ORDER BY n.id DESC"; //query
+    //全ての商談の件数を取得する
+    String Q_NEG_COUNT = ENTITY_NEG + ".count";
+    String Q_NEG_COUNT_DEF = "SELECT COUNT(n) FROM Report AS n";
+    //指定した従業員が作成した商談を全件idの降順で取得する
+    String Q_NEG_GET_ALL_MINE = ENTITY_NEG + ".getAllMine";
+    String Q_NEG_GET_ALL_MINE_DEF = "SELECT n FROM Negotiation AS n WHERE n.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY n.id DESC";
+    //指定した従業員が作成した商談の件数を取得する
+    String Q_NEG_COUNT_ALL_MINE = ENTITY_NEG + ".countAllMine";
+    String Q_NEG_COUNT_ALL_MINE_DEF = "SELECT COUNT(n) FROM Negotiation AS n WHERE n.employee = :" + JPQL_PARM_EMPLOYEE;
+
+
+
+
 
 }
