@@ -59,7 +59,11 @@ public enum AttributeConst {
 
     //承認フラグ
     APPROVAL_FLAF_TRUE(1), //承認済み
-    APPROVAL_FLAF_FALSE(0); //未承認
+    APPROVAL_FLAF_FALSE(0), //未承認
+
+    // 完了/継続の判断
+    NEG_TRUE(1), //完了済み
+    NEG_NO_FINISH(0); //継続
 
     private final String text;
     private final Integer i;

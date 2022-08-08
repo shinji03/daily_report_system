@@ -124,6 +124,10 @@ String Q_EMP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e 
     String Q_NEG_COUNT_ALL_MINE = ENTITY_NEG + ".countAllMine";
     String Q_NEG_COUNT_ALL_MINE_DEF = "SELECT COUNT(n) FROM Negotiation AS n WHERE n.employee = :" + JPQL_PARM_EMPLOYEE;
 
+    // 完了/継続の判断
+    int  NEG_TRUE = 1; //完了済み
+    int  NEG_NO_FINISH = 0; //継続
+
 
 
 
