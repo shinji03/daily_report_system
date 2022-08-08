@@ -8,6 +8,7 @@
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commApp" value="${ForwardConst.CMD_APPROVAL.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -31,7 +32,8 @@
 
                 <tr>
                     <th>内容</th>
-                    <td><pre><c:out value="${report.content}" />
+                    <td><pre>
+                            <c:out value="${report.content}" />
                         </pre></td>
                 </tr>
 
@@ -72,6 +74,22 @@
                 <a
                     href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
             </p>
+        </c:if>
+
+        <c:if test="${sessionScope.login_employee.managementFlag != 0}">
+            <p><a href="#" onclick="confimApproval();">この日報を承認する</a></p>
+            <form method="POST" action="<c:url value='?action=${actRep}&command=${commApp}' />">
+                <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"value="${report.id}" />
+                <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+            </form>
+
+            <script>
+                function confimApproval() {
+                    if (confirm("この日報を承認しますか？")) {
+                        document.forms[0].submit();}
+                }
+            </script>
+
         </c:if>
 
         <p>

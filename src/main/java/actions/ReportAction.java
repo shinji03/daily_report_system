@@ -247,4 +247,29 @@ public class ReportAction extends ActionBase {
         }
     }
 
+    /**
+     * 承認を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void approval() throws ServletException, IOException {
+
+        //CSRF対策 tokenのチェック
+        if (checkToken()) {
+
+            //idを条件に日報データを承認する
+            service.approvalInternal(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+            //セッションに承認完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+        }
+
+    }
+
+
+
 }

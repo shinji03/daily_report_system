@@ -171,4 +171,27 @@ public class ReportService extends ServiceBase {
         em.getTransaction().commit();
     }
 
+    /**
+     * 日報データを承認する
+     * @param rv 日報データ
+     */
+
+    public void approvalInternal(Integer id) {
+
+        //idを条件に登録済みの従業員情報を取得する
+        ReportView savedRep = findOne(id);
+
+        //更新日時に現在時刻を設定する
+        LocalDateTime today = LocalDateTime.now();
+        savedRep.setUpdatedAt(today);
+
+        //承認フラグをたてる
+        savedRep.setApprovalFlag(JpaConst.APPROVAL_FLAF_TRUE);
+
+        //更新処理を行う
+        update(savedRep);
+
+    }
+
+
 }
