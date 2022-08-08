@@ -107,7 +107,7 @@ public class Report {
     /**
      * 承認日時
      */
-    @Column(name = JpaConst.REP_COL_COMPLETE_AT, nullable = false)
+    @Column(name = JpaConst.REP_COL_COMPLETE_AT)
     private LocalDateTime completedAt;
 
 }
