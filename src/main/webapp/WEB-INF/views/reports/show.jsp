@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="constants.ForwardConst"%>
+<%@ page import="constants.AttributeConst"%>
+
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -32,9 +34,7 @@
 
                 <tr>
                     <th>内容</th>
-                    <td><pre>
-                            <c:out value="${report.content}" />
-                        </pre></td>
+                    <td><pre><c:out value="${report.content}" /></pre></td>
                 </tr>
 
                 <tr>
@@ -57,7 +57,7 @@
                     <th>承認状況</th>
                     <td><c:choose>
                             <c:when
-                                test="${report.approvalFlag == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()}">承認済み</c:when>
+                                test="${report.approvalFlag == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()}">〇〇が承認済み</c:when>
                             <c:otherwise>未承認</c:otherwise>
                         </c:choose></td>
                 </tr>
@@ -67,30 +67,45 @@
             </tbody>
         </table>
 
-        <!-- 以下の内容で作成者かどうか判別している -->
+        <c:choose>
+            <c:when
+                test="${report.approvalFlag == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()}"></c:when>
 
-        <c:if test="${sessionScope.login_employee.id == report.employee.id}">
-            <p>
-                <a
-                    href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
-            </p>
-        </c:if>
+            <c:otherwise>
+                <!-- 以下の内容で作成者かどうか判別している -->
 
-        <c:if test="${sessionScope.login_employee.managementFlag != 0}">
-            <p><a href="#" onclick="confimApproval();">この日報を承認する</a></p>
-            <form method="POST" action="<c:url value='?action=${actRep}&command=${commApp}' />">
-                <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"value="${report.id}" />
-                <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-            </form>
+                <c:if test="${sessionScope.login_employee.id == report.employee.id}">
+                    <p>
+                        <a
+                            href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
+                    </p>
+                </c:if>
 
-            <script>
-                function confimApproval() {
-                    if (confirm("この日報を承認しますか？")) {
-                        document.forms[0].submit();}
-                }
-            </script>
+                <c:if
+                    test="${sessionScope.login_employee.managementFlag != AttributeConst.POSITION_GENERAL.getIntegerValue()}">
+                    <p>
+                        <a href="#" onclick="confimApproval();">この日報を承認する</a>
+                    </p>
+                    <form method="POST"
+                        action="<c:url value='?action=${actRep}&command=${commApp}' />">
+                        <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"
+                            value="${report.id}" /> <input type="hidden"
+                            name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+                    </form>
 
-        </c:if>
+                    <script>
+                        function confimApproval() {
+                            if (confirm("この日報を承認しますか？")) {
+                                document.forms[0].submit();
+                            }
+                        }
+                    </script>
+                </c:if>
+
+
+            </c:otherwise>
+
+        </c:choose>
 
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>

@@ -178,13 +178,13 @@ public class ReportService extends ServiceBase {
 
     public void approvalInternal(Integer id) {
 
-        //idを条件に登録済みの従業員情報を取得する
+        //idを条件に登録済みの日報情報を取得する
         ReportView savedRep = findOne(id);
 
-        //更新日時に現在時刻を設定する
-        LocalDateTime today = LocalDateTime.now();
-        savedRep.setUpdatedAt(today);
-
+        //更新日時を現在時刻に設定
+        LocalDateTime ldt = LocalDateTime.now();
+        savedRep.setCompletedAt(ldt);
+        
         //承認フラグをたてる
         savedRep.setApprovalFlag(JpaConst.APPROVAL_FLAF_TRUE);
 
