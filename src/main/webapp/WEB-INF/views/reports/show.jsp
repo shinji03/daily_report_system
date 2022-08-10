@@ -56,8 +56,9 @@
                 <tr>
                     <th>承認状況</th>
                     <td><c:choose>
-                            <c:when
-                                test="${report.approvalFlag == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()}">〇〇が承認済み</c:when>
+                            <c:when test="${report.approvalFlag == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()}">
+                                <c:out value="${report.approvalStaff}" />が承認
+                            </c:when>
                             <c:otherwise>未承認</c:otherwise>
                         </c:choose></td>
                 </tr>
@@ -88,9 +89,9 @@
                     </p>
                     <form method="POST"
                         action="<c:url value='?action=${actRep}&command=${commApp}' />">
-                        <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"
-                            value="${report.id}" /> <input type="hidden"
-                            name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+                        <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"value="${report.id}" />
+                        <input type="hidden" name="${AttributeConst.REP_APPROVAL_STAFF.getValue()}"value="${sessionScope.login_employee.name}" />
+                        <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
                     </form>
 
                     <script>

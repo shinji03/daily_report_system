@@ -176,17 +176,16 @@ public class ReportService extends ServiceBase {
      * @param rv 日報データ
      */
 
-    public void approvalInternal(Integer id) {
+    public void approvalInternal(Integer id, String approvalstaff) {
 
         //idを条件に登録済みの日報情報を取得する
         ReportView savedRep = findOne(id);
-
+        savedRep.setApprovalStaff(approvalstaff);
+        //承認フラグをたてる
+        savedRep.setApprovalFlag(JpaConst.APPROVAL_FLAF_TRUE);
         //更新日時を現在時刻に設定
         LocalDateTime ldt = LocalDateTime.now();
         savedRep.setCompletedAt(ldt);
-        
-        //承認フラグをたてる
-        savedRep.setApprovalFlag(JpaConst.APPROVAL_FLAF_TRUE);
 
         //更新処理を行う
         update(savedRep);
