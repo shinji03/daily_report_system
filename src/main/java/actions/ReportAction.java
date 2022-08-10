@@ -168,6 +168,7 @@ public class ReportAction extends ActionBase {
 
         } else {
 
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
 
             //詳細画面を表示
@@ -258,15 +259,18 @@ public class ReportAction extends ActionBase {
 
     public void approval() throws ServletException, IOException {
 
+        if (checkToken()) {
 
-        //idを条件に日報データを取得する
-        service.approvalInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
+            //idを条件に日報データを取得する
+            service.approvalInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
 
-        //セッションに更新完了のフラッシュメッセージを設定
-        putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL.getMessage());
+            //セッションに更新完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL.getMessage());
 
-        //一覧画面にリダイレクト
-        redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+
     }
 
 }
