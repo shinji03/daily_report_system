@@ -189,9 +189,11 @@ public class ReportAction extends ActionBase {
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-        if (rv == null || ev.getId() != rv.getEmployee().getId()) {
+        if (rv == null || ev.getId() != rv.getEmployee().getId() || rv.getApprovalFlag() == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()) {
             //該当の日報データが存在しない、または
+            //承認済み、または
             //ログインしている従業員が日報の作成者でない場合はエラー画面を表示
+
             forward(ForwardConst.FW_ERR_UNKNOWN);
 
         } else {
