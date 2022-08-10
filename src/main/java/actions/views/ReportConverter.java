@@ -36,7 +36,8 @@ public class ReportConverter {
                         : rv.getApprovalFlag() == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()
                                 ? JpaConst.APPROVAL_FLAF_TRUE
                                 : JpaConst.APPROVAL_FLAF_FALSE,
-                rv.getCompletedAt());
+                rv.getCompletedAt(),
+                rv.getApprovalStaff());
     }
 
     /**
@@ -64,7 +65,8 @@ public class ReportConverter {
                         : r.getApprovalFlag() == JpaConst.APPROVAL_FLAF_TRUE
                                 ? AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()
                                 : AttributeConst.APPROVAL_FLAF_FALSE.getIntegerValue(),
-                r.getCompletedAt()
+                r.getCompletedAt(),
+                r.getApprovalStaff()
 
         );
     }
@@ -102,6 +104,7 @@ public class ReportConverter {
         r.setUpdatedAt(rv.getUpdatedAt());
         r.setApprovalFlag(rv.getApprovalFlag());
         r.setCompletedAt(rv.getCompletedAt());
+        r.setApprovalStaff(rv.getApprovalStaff());
 
     }
 

@@ -123,6 +123,7 @@ public class ReportAction extends ActionBase {
                     null,
                     null,
                     toNumber(getRequestParam(AttributeConst.REP_APPROVAL_FLAG)),
+                    null,
                     null);
 
             //日報情報登録

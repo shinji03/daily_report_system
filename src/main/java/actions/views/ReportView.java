@@ -65,5 +65,11 @@ public class ReportView {
      */
     private LocalDateTime completedAt;
 
+    /**
+     * 承認スタッフ
+     */
+
+   private String approvalStaff;
+
 
 }

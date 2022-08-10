@@ -110,4 +110,10 @@ public class Report {
     @Column(name = JpaConst.REP_COL_COMPLETE_AT)
     private LocalDateTime completedAt;
 
+    /**
+     * 承認スタッフ
+     */
+    @Column(name = JpaConst.REP_COL_APPROVAL_STAFF)
+    private String approvalStaff;
+
 }

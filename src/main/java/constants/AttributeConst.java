@@ -56,6 +56,7 @@ public enum AttributeConst {
     REP_TITLE("title"),
     REP_CONTENT("content_msg"),
     REP_APPROVAL_FLAG("approval_flag"),
+    REP_APPROVAL_STAFF("approval_staff"),
 
     //商談管理
     NEGOTINATION("negotiation"),

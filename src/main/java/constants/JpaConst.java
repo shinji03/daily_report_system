@@ -53,6 +53,7 @@ public interface JpaConst {
     //追加分↓
     String REP_COL_APPROVAL_FLAG = "approval_flag"; //承認ステータス
     String REP_COL_COMPLETE_AT = "completed_at"; //承認日時
+    String REP_COL_APPROVAL_STAFF = "approval_staff";//承認スタッフ
 
     // 承認/未承認の判断
     int  APPROVAL_FLAF_TRUE = 1; //承認済み
