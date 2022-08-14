@@ -17,7 +17,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>日報 一覧</h2>
+        <h2>承認待ちの日報 一覧</h2>
         <table id="report_list">
             <tbody>
                 <tr>

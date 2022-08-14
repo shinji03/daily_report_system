@@ -287,7 +287,8 @@ public class ReportAction extends ActionBase {
         if (checkToken()) {
 
             //idを条件に日報データを取得する
-            service.approvalcancelInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
+            service.approvalcancelInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),
+                    getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
 
             //セッションに更新完了のフラッシュメッセージを設定
             putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL_CANCEL.getMessage());
@@ -297,7 +298,6 @@ public class ReportAction extends ActionBase {
         }
 
     }
-
 
     /**
      *申請を行う
@@ -353,13 +353,15 @@ public class ReportAction extends ActionBase {
 
         //指定されたページ数の一覧画面に表示する日報データを取得
         int page = getPage();
-        List<ReportView> reports = service.getAllPerPage(page);
+        Integer applicationFlag = AttributeConst.APPLICATION_FLAF_SEE.getIntegerValue();
+
+        List<ReportView> reports = service.getAllApplicationPerPage(applicationFlag, page);
 
         //全日報データの件数を取得
-        long reportsCount = service.countAll();
+        long reportsCount = service.countAllApplication(applicationFlag);
 
-        putRequestScope(AttributeConst.REPORTS, reports); //取得した日報データ
-        putRequestScope(AttributeConst.REP_COUNT, reportsCount); //全ての日報データの件数
+        putRequestScope(AttributeConst.REPORTS, reports); //申請中の日報データ
+        putRequestScope(AttributeConst.REP_COUNT, reportsCount); //申請中の日報データの件数
         putRequestScope(AttributeConst.PAGE, page); //ページ数
         putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
 
@@ -373,6 +375,7 @@ public class ReportAction extends ActionBase {
 
         //一覧画面を表示
         forward(ForwardConst.FW_REP_APPLICATION_INDEX);
+
     }
 
 }

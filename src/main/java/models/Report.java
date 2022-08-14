@@ -38,7 +38,13 @@ import lombok.Setter;
         @NamedQuery(name = JpaConst.Q_REP_GET_ALL_MINE, query = JpaConst.Q_REP_GET_ALL_MINE_DEF),
 
         //指定した従業員が作成した日報の件数を取得する
-        @NamedQuery(name = JpaConst.Q_REP_COUNT_ALL_MINE, query = JpaConst.Q_REP_COUNT_ALL_MINE_DEF)
+        @NamedQuery(name = JpaConst.Q_REP_COUNT_ALL_MINE, query = JpaConst.Q_REP_COUNT_ALL_MINE_DEF),
+
+        //申請中の日報をidの降順で取得する
+        @NamedQuery(name = JpaConst.Q_REP_GET_APPLICATION_ALL_MINE, query = JpaConst.Q_REP_GET_APPLICATION_ALL_MINE_DEF),
+
+        //申請中の日報の件数を取得する
+        @NamedQuery(name = JpaConst.Q_REP_COUNT_APPLICATION_ALL_MINE, query = JpaConst.Q_REP_COUNT_APPLICATION_ALL_MINE_DEF)
 })
 
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
@@ -102,7 +108,7 @@ public class Report {
      * 申請フラグ
      */
     @Column(name = JpaConst.REP_COL_APPLICATION_FLAG)
-    private Integer ApplicationFlag;
+    private Integer applicationFlag;
 
     /**
      * 承認フラグ
