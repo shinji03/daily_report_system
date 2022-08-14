@@ -101,6 +101,7 @@ public class ReportService extends ServiceBase {
             LocalDateTime ldt = LocalDateTime.now();
             rv.setCreatedAt(ldt);
             rv.setUpdatedAt(ldt);
+            rv.setApplicationFlag(JpaConst.APPLICATION_FLAF_FALSE);
             createInternal(rv);
 
         }
@@ -183,7 +184,7 @@ public class ReportService extends ServiceBase {
         savedRep.setApprovalStaff(approvalstaff);
         //承認フラグをたてる
         savedRep.setApprovalFlag(JpaConst.APPROVAL_FLAF_TRUE);
-        //更新日時を現在時刻に設定
+        //承認日時を現在時刻に設定
         LocalDateTime ldt = LocalDateTime.now();
         savedRep.setCompletedAt(ldt);
 
@@ -192,5 +193,54 @@ public class ReportService extends ServiceBase {
 
     }
 
+    /**
+     * 日報データの確定を解除する
+     * @param rv 日報データ
+     */
+
+    public void approvalcancelInternal(Integer id, String approvalstaff) {
+
+        //idを条件に登録済みの日報情報を取得する
+        ReportView savedRep = findOne(id);
+        savedRep.setApprovalStaff(approvalstaff);
+        //承認フラグを取り合下げる
+        savedRep.setApprovalFlag(JpaConst.APPROVAL_FLAF_FALSE);
+        //申請フラグを取り下げる
+        savedRep.setApplicationFlag(JpaConst.APPLICATION_FLAF_FALSE);
+        //更新処理を行う
+        update(savedRep);
+
+    }
+
+
+    /**
+     * 日報データを申請する
+     * @param rv 日報データ
+     */
+    public void applicationInternal(Integer id) {
+
+        //idを条件に登録済みの日報情報を取得する
+        ReportView savedRep = findOne(id);
+        //申請フラグをたてる
+        savedRep.setApplicationFlag(JpaConst.APPLICATION_FLAF_SEE);
+        //更新処理を行う
+        update(savedRep);
+
+    }
+
+    /**
+     * 日報データを取り下げる
+     * @param rv 日報データ
+     */
+    public void applicationcanselInternal(Integer id) {
+
+        //idを条件に登録済みの日報情報を取得する
+        ReportView savedRep = findOne(id);
+        //申請フラグを取り下げる
+        savedRep.setApplicationFlag(JpaConst.APPLICATION_FLAF_FALSE);
+        //更新処理を行う
+        update(savedRep);
+
+    }
 
 }

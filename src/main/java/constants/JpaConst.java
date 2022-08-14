@@ -54,10 +54,17 @@ public interface JpaConst {
     String REP_COL_APPROVAL_FLAG = "approval_flag"; //承認ステータス
     String REP_COL_COMPLETE_AT = "completed_at"; //承認日時
     String REP_COL_APPROVAL_STAFF = "approval_staff";//承認スタッフ
+    String REP_COL_APPLICATION_FLAG = "application_flag";
 
     // 承認/未承認の判断
     int  APPROVAL_FLAF_TRUE = 1; //承認済み
     int  APPROVAL_FLAF_FALSE = 0; //未承認
+
+    //申請/未申請の判断
+    int  APPLICATION_FLAF_TRUE = 3; //確認済み
+    int  APPLICATION_FLAF_RE = 2; //再提出
+    int  APPLICATION_FLAF_SEE = 1;//申請中
+    int  APPLICATION_FLAF_FALSE = 0;//未申請
 
     //追加分↑
 
@@ -128,9 +135,6 @@ String Q_EMP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e 
     // 完了/継続の判断
     int  NEG_TRUE = 1; //完了済み
     int  NEG_NO_FINISH = 0; //継続
-
-
-
 
 
 }

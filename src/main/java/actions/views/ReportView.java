@@ -56,6 +56,11 @@ public class ReportView {
     private LocalDateTime updatedAt;
 
     /**
+     * 申請フラグ
+     */
+    private Integer applicationFlag;
+
+    /**
      * 承認フラグ
      */
     private Integer approvalFlag;

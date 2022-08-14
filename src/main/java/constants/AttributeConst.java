@@ -57,6 +57,7 @@ public enum AttributeConst {
     REP_CONTENT("content_msg"),
     REP_APPROVAL_FLAG("approval_flag"),
     REP_APPROVAL_STAFF("approval_staff"),
+    REP_APPLICATION_FLAG("application_flag"),
 
     //商談管理
     NEGOTINATION("negotiation"),
@@ -71,6 +72,12 @@ public enum AttributeConst {
     //承認フラグ
     APPROVAL_FLAF_TRUE(1), //承認済み
     APPROVAL_FLAF_FALSE(0), //未承認
+
+    //申請フラグ
+    APPLICATION_FLAF_TRUE(3), //確認済み
+    APPLICATION_FLAF_RE(2), //再提出
+    APPLICATION_FLAF_SEE(1), //申請中
+    APPLICATION_FLAF_STAY(0),//未申請
 
     // 完了/継続の判断
     NEG_TRUE(1), //完了済み

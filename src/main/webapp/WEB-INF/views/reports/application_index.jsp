@@ -24,6 +24,7 @@
                     <th class="report_name">氏名</th>
                     <th class="report_date">日付</th>
                     <th class="report_title">タイトル</th>
+                    <th class="report_app">申請状況</th>
                     <th class="report_action">操作</th>
                 </tr>
                 <c:forEach var="report" items="${reports}" varStatus="status">
@@ -35,6 +36,24 @@
                         <td class="report_date"><fmt:formatDate value='${reportDay}'
                                 pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
+                        <td class="report_app">
+                        <c:choose>
+                                <c:when
+                                    test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_TRUE.getIntegerValue()}">
+                                    確認済み
+                                </c:when>
+                                <c:when
+                                    test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_SEE.getIntegerValue()}">
+                                    申請中
+                                </c:when>
+                                <c:when
+                                    test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_RE.getIntegerValue()}">
+                                再提出
+                                </c:when>
+                                <c:otherwise>
+                                未申請
+                                </c:otherwise>
+                        </c:choose></td>
                         <td class="report_action"><a
                             href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a></td>
                     </tr>

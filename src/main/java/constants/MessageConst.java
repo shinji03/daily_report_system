@@ -15,6 +15,9 @@ public enum MessageConst {
     I_REGISTERED("登録が完了しました。"),
     I_UPDATED("更新が完了しました。"),
     I_APPROVAL("承認が完了しました。"),
+    I_APPROVAL_CANCEL("承認を取り下げました。"),
+    I_APPLICATIOIN("申請が完了しました。"),
+    I_APPLICATIOIN_CANCEL("申請を取り下げました。"),
     I_DELETED("削除が完了しました。"),
 
     //バリデーション

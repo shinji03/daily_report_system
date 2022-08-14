@@ -18,6 +18,7 @@ public enum ForwardConst {
     CMD("command"),
     CMD_NONE(""),
     CMD_INDEX("index"),
+    CMD_APPLICATION_INDEX("application_index"),
     CMD_SHOW("show"),
     CMD_SHOW_LOGIN("showLogin"),
     CMD_LOGIN("login"),
@@ -28,6 +29,10 @@ public enum ForwardConst {
     CMD_UPDATE("update"),
     CMD_DESTROY("destroy"),
     CMD_APPROVAL("approval"),
+    CMD_APPROVAL_CANCEL("approva_cancel"),
+    CMD_APPLICATION("application"),
+    CMD_APPLICATION_CANCEL("application_cancel"),
+
 
     //jsp
     FW_ERR_UNKNOWN("error/unknown"),
@@ -41,6 +46,7 @@ public enum ForwardConst {
     FW_REP_SHOW("reports/show"),
     FW_REP_NEW("reports/new"),
     FW_REP_EDIT("reports/edit"),
+    FW_REP_APPLICATION_INDEX("reports/application_index"),
     FW_NEG_INDEX("negotiations/index");
 
     /**

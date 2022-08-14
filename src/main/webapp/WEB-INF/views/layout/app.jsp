@@ -13,6 +13,7 @@
 
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commOut" value="${ForwardConst.CMD_LOGOUT.getValue()}" />
+<c:set var="commAppIdx" value="${ForwardConst.CMD_APPLICATION_INDEX.getValue()}" />
 
 <!DOCTYPE html>
 
@@ -37,8 +38,15 @@
                         test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
                         <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">従業員管理</a>&nbsp;
                     </c:if>
+
+                    <c:if
+                        test="${sessionScope.login_employee.managementFlag != AttributeConst.POSITION_GENERAL.getIntegerValue()}">
+                        <a href="<c:url value='?action=${actRep}&command=${commAppIdx}' />">承認管理</a>&nbsp;
+                    </c:if>
+
                     <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">日報一覧</a>&nbsp;
-                    <a href="<c:url value='?action=${actNeg}&command=${commIdx}' />">商談一覧</a>&nbsp;
+                    <a
+                        href="<c:url value='?action=${actNeg}&command=${commIdx}' />">商談一覧</a>&nbsp;
 
                 </c:if>
             </div>

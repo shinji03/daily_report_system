@@ -122,6 +122,7 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
                     null,
+                    null,
                     toNumber(getRequestParam(AttributeConst.REP_APPROVAL_FLAG)),
                     null,
                     null);
@@ -190,7 +191,8 @@ public class ReportAction extends ActionBase {
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-        if (rv == null || ev.getId() != rv.getEmployee().getId() || rv.getApprovalFlag() == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()) {
+        if (rv == null || ev.getId() != rv.getEmployee().getId()
+                || rv.getApprovalFlag() == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()) {
             //該当の日報データが存在しない、または
             //承認済み、または
             //ログインしている従業員が日報の作成者でない場合はエラー画面を表示
@@ -262,7 +264,8 @@ public class ReportAction extends ActionBase {
         if (checkToken()) {
 
             //idを条件に日報データを取得する
-            service.approvalInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
+            service.approvalInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),
+                    getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
 
             //セッションに更新完了のフラッシュメッセージを設定
             putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL.getMessage());
@@ -271,6 +274,105 @@ public class ReportAction extends ActionBase {
             redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
         }
 
+    }
+
+    /**
+     * 承認を取り下げる
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void approva_cancel() throws ServletException, IOException {
+
+        if (checkToken()) {
+
+            //idを条件に日報データを取得する
+            service.approvalcancelInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
+
+            //セッションに更新完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL_CANCEL.getMessage());
+
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+
+    }
+
+
+    /**
+     *申請を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void application() throws ServletException, IOException {
+
+        if (checkToken()) {
+
+            //idを条件に日報データを取得する
+            service.applicationInternal(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+            //セッションに更新完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPLICATIOIN.getMessage());
+
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+
+    }
+
+    /**
+     *申請を取り消す
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void application_cancel() throws ServletException, IOException {
+
+        if (checkToken()) {
+
+            //idを条件に日報データを取得する
+            service.applicationcanselInternal(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+            //セッションに更新完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPLICATIOIN_CANCEL.getMessage());
+
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+
+    }
+
+    /**
+     * 申請状況にあわせた一覧画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void application_index() throws ServletException, IOException {
+
+        //指定されたページ数の一覧画面に表示する日報データを取得
+        int page = getPage();
+        List<ReportView> reports = service.getAllPerPage(page);
+
+        //全日報データの件数を取得
+        long reportsCount = service.countAll();
+
+        putRequestScope(AttributeConst.REPORTS, reports); //取得した日報データ
+        putRequestScope(AttributeConst.REP_COUNT, reportsCount); //全ての日報データの件数
+        putRequestScope(AttributeConst.PAGE, page); //ページ数
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
+
+        //セッションにフラッシュメッセージが設定されている場合は、リクエストスコープに差し替え、セッションから削除する
+        String flush = getSessionScope(AttributeConst.FLUSH);
+        if (flush != null) {
+            putRequestScope(AttributeConst.FLUSH, flush);
+            removeSessionScope(AttributeConst.FLUSH);
+
+        }
+
+        //一覧画面を表示
+        forward(ForwardConst.FW_REP_APPLICATION_INDEX);
     }
 
 }

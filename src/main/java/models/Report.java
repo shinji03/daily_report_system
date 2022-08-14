@@ -99,6 +99,12 @@ public class Report {
     private LocalDateTime updatedAt;
 
     /**
+     * 申請フラグ
+     */
+    @Column(name = JpaConst.REP_COL_APPLICATION_FLAG)
+    private Integer ApplicationFlag;
+
+    /**
      * 承認フラグ
      */
     @Column(name = JpaConst.REP_COL_APPROVAL_FLAG, nullable = false)

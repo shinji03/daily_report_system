@@ -31,6 +31,7 @@ public class ReportConverter {
                 rv.getContent(),
                 rv.getCreatedAt(),
                 rv.getUpdatedAt(),
+                rv.getApplicationFlag(),
                 rv.getApprovalFlag() == null
                         ? null
                         : rv.getApprovalFlag() == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()
@@ -60,6 +61,7 @@ public class ReportConverter {
                 r.getContent(),
                 r.getCreatedAt(),
                 r.getUpdatedAt(),
+                r.getApplicationFlag(),
                 r.getApprovalFlag() == null
                         ? null
                         : r.getApprovalFlag() == JpaConst.APPROVAL_FLAF_TRUE
@@ -102,6 +104,7 @@ public class ReportConverter {
         r.setContent(rv.getContent());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
+        r.setApplicationFlag(rv.getApplicationFlag());
         r.setApprovalFlag(rv.getApprovalFlag());
         r.setCompletedAt(rv.getCompletedAt());
         r.setApprovalStaff(rv.getApprovalStaff());
