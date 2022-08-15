@@ -44,7 +44,7 @@
                                 </c:when>
                                 <c:when
                                     test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_SEE.getIntegerValue()}">
-                                    申請中
+                                    承認待ち
                                 </c:when>
                                 <c:when
                                     test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_RE.getIntegerValue()}">
