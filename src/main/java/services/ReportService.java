@@ -264,7 +264,7 @@ public class ReportService extends ServiceBase {
     }
 
     /**
-     * 日報データを取り下げる
+     * 日報データの申請を取り下げる（制作者自身）
      * @param rv 日報データ
      */
     public void applicationcanselInternal(Integer id) {

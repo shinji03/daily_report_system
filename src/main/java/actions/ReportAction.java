@@ -300,7 +300,7 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     *申請を行う
+     * 日報データの申請を行う
      * @throws ServletException
      * @throws IOException
      */
@@ -322,7 +322,7 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     *申請を取り消す
+     * 日報データの申請を取り消す（制作者自身で）
      * @throws ServletException
      * @throws IOException
      */

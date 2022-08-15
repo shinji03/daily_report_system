@@ -41,8 +41,7 @@
 
                 <tr>
                     <th>内容</th>
-                    <td><pre> <c:out value="${report.content}" />
-                        </pre></td>
+                    <td><pre> <c:out value="${report.content}" /></pre></td>
                 </tr>
 
                 <tr>
@@ -188,14 +187,10 @@
                             <p>
                                 <a href="#" onclick="confimApproval();">この日報を承認する</a>
                             </p>
-                            <form name="commApp" method="POST"
-                                action="<c:url value='?action=${actRep}&command=${commApp}' />">
-                                <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"
-                                    value="${report.id}" /> <input type="hidden"
-                                    name="${AttributeConst.REP_APPROVAL_STAFF.getValue()}"
-                                    value="${sessionScope.login_employee.name}" /> <input
-                                    type="hidden" name="${AttributeConst.TOKEN.getValue()}"
-                                    value="${_token}" />
+                            <form name="commApp" method="POST" action="<c:url value='?action=${actRep}&command=${commApp}' />">
+                                <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"  value="${report.id}" />
+                                <input type="hidden" name="${AttributeConst.REP_APPROVAL_STAFF.getValue()}" value="${sessionScope.login_employee.name}" />
+                                <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
                             </form>
 
                             <script>
@@ -205,6 +200,24 @@
                                     }
                                 }
                             </script>
+
+                            <p>
+                                <a href="#" onclick="confimApproval();">この日報を取り下げる</a>
+                            </p>
+                            <form name="commApp" method="POST" action="<c:url value='?action=${actRep}&command=${commApp}' />">
+                                <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"  value="${report.id}" />
+                                <input type="hidden" name="${AttributeConst.REP_APPROVAL_STAFF.getValue()}" value="${sessionScope.login_employee.name}" />
+                                <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+                            </form>
+
+                            <script>
+                                function confimApproval() {
+                                    if (confirm("この日報を取り下げますか？")) {
+                                        document.forms.commApp.submit();
+                                    }
+                                }
+                            </script>
+
                         </c:when>
 
                         <c:otherwise>
