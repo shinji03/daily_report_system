@@ -250,7 +250,7 @@ public class ReportService extends ServiceBase {
     }
 
     /**
-     * 日報データの確定を解除する
+     * 日報データの確定を解除する（管理者側のアクション）
      * @param rv 日報データ
      */
 
@@ -270,7 +270,7 @@ public class ReportService extends ServiceBase {
 
 
     /**
-     * 日報データを申請する
+     * 日報データを申請する（制作者側のアクション）
      * @param rv 日報データ
      */
     public void applicationInternal(Integer id) {

@@ -17,8 +17,8 @@ public enum MessageConst {
     I_APPROVAL("承認が完了しました。"),
     I_APPROVAL_BACK("申請を取り下げました。"),
     I_APPROVAL_CANCEL("確定を解除しました。"),
-    I_APPLICATIOIN("申請が完了しました。"),
-    I_APPLICATIOIN_CANCEL("申請を取り下げました。"),
+    I_APPLICATIOIN("申請しました。"),
+    I_APPLICATIOIN_CANCEL("申請を取り消しました。"),
     I_DELETED("削除が完了しました。"),
 
     //バリデーション

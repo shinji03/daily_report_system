@@ -228,6 +228,9 @@ public class ReportAction extends ActionBase {
             rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
             rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
 
+            //申請状況を未申請にする
+            rv.setApplicationFlag(JpaConst.APPLICATION_FLAF_FALSE);
+
             //日報データを更新する
             List<String> errors = service.update(rv);
 
@@ -300,7 +303,7 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     * 日報データの確定を取り下げる（管理者側のアクション）
+     * 日報データの確定を解除する（管理者側のアクション）
      * @throws ServletException
      * @throws IOException
      */

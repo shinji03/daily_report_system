@@ -100,7 +100,8 @@
 
         <c:choose>
             <c:when
-                test="${report.approvalFlag == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue()}">
+                test="${report.approvalFlag == AttributeConst.APPROVAL_FLAF_TRUE.getIntegerValue() and
+                sessionScope.login_employee.managementFlag != AttributeConst.POSITION_GENERAL.getIntegerValue() }">
                 <p>
                     <a href="#" onclick="confimApplication_cancel();">確定を解除する</a>
                 </p>
@@ -127,7 +128,8 @@
             <c:otherwise>
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">
                     <c:if
-                        test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_STAY.getIntegerValue()}">
+                        test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_STAY.getIntegerValue() or
+                           report.applicationFlag == AttributeConst.APPLICATION_FLAF_RE.getIntegerValue()}" >
                         <p>
                             <a
                                 href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
@@ -156,6 +158,7 @@
                             }
                         </script>
                     </c:if>
+
                     <c:if
                         test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_STAY.getIntegerValue()}">
                         <p>
@@ -212,7 +215,7 @@
                             </form>
 
                             <script>
-                                function confimApproval() {
+                                function confimApproval_back() {
                                     if (confirm("この日報を取り下げますか？")) {
                                         document.forms.commAppBack.submit();
                                     }
