@@ -36,8 +36,7 @@
                         <td class="report_date"><fmt:formatDate value='${reportDay}'
                                 pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
-                        <td class="report_app">
-                        <c:choose>
+                        <td class="report_app"><c:choose>
                                 <c:when
                                     test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_TRUE.getIntegerValue()}">
                                     確認済み
@@ -48,12 +47,12 @@
                                 </c:when>
                                 <c:when
                                     test="${report.applicationFlag == AttributeConst.APPLICATION_FLAF_RE.getIntegerValue()}">
-                                再提出
+                                    再提出
                                 </c:when>
                                 <c:otherwise>
-                                未申請
+                                    未申請
                                 </c:otherwise>
-                        </c:choose></td>
+                            </c:choose></td>
                         <td class="report_action"><a
                             href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a></td>
                     </tr>
