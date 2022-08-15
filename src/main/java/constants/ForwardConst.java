@@ -29,6 +29,7 @@ public enum ForwardConst {
     CMD_UPDATE("update"),
     CMD_DESTROY("destroy"),
     CMD_APPROVAL("approval"),
+    CMD_APPROVAL_BACK("approval_back"),
     CMD_APPROVAL_CANCEL("approva_cancel"),
     CMD_APPLICATION("application"),
     CMD_APPLICATION_CANCEL("application_cancel"),

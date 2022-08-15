@@ -229,6 +229,27 @@ public class ReportService extends ServiceBase {
     }
 
     /**
+     * 日報データを取り下げる（管理者側のアクション）
+     * @param rv 日報データ
+     */
+
+    public void approvalbackInternal(Integer id, String approvalstaff) {
+
+        //idを条件に登録済みの日報情報を取得する
+        ReportView savedRep = findOne(id);
+        savedRep.setApprovalStaff(approvalstaff);
+        //申請フラグの更新
+        savedRep.setApplicationFlag(JpaConst.APPLICATION_FLAF_RE);
+        //承認日時を現在時刻に設定
+        LocalDateTime ldt = LocalDateTime.now();
+        savedRep.setCompletedAt(ldt);
+
+        //更新処理を行う
+        update(savedRep);
+
+    }
+
+    /**
      * 日報データの確定を解除する
      * @param rv 日報データ
      */
@@ -264,7 +285,7 @@ public class ReportService extends ServiceBase {
     }
 
     /**
-     * 日報データの申請を取り下げる（制作者自身）
+     * 日報データの申請を取り下げる（制作者側のアクション）
      * @param rv 日報データ
      */
     public void applicationcanselInternal(Integer id) {

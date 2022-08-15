@@ -11,6 +11,7 @@
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="commApp" value="${ForwardConst.CMD_APPROVAL.getValue()}" />
+<c:set var="commAppBack" value="${ForwardConst.CMD_APPROVAL_BACK.getValue()}" />
 <c:set var="commAppCancel"
     value="${ForwardConst.CMD_APPROVAL_CANCEL.getValue()}" />
 <c:set var="commAppli"
@@ -204,7 +205,7 @@
                             <p>
                                 <a href="#" onclick="confimApproval();">この日報を取り下げる</a>
                             </p>
-                            <form name="commApp" method="POST" action="<c:url value='?action=${actRep}&command=${commApp}' />">
+                            <form name="commAppBack" method="POST" action="<c:url value='?action=${actRep}&command=${commAppBack}' />">
                                 <input type="hidden" name="${AttributeConst.REP_ID.getValue()}"  value="${report.id}" />
                                 <input type="hidden" name="${AttributeConst.REP_APPROVAL_STAFF.getValue()}" value="${sessionScope.login_employee.name}" />
                                 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
@@ -213,7 +214,7 @@
                             <script>
                                 function confimApproval() {
                                     if (confirm("この日報を取り下げますか？")) {
-                                        document.forms.commApp.submit();
+                                        document.forms.commAppBack.submit();
                                     }
                                 }
                             </script>

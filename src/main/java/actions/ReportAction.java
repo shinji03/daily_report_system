@@ -254,7 +254,7 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     * 承認を行う
+     * 日報データの承認を行う（管理者側のアクション）
      * @throws ServletException
      * @throws IOException
      */
@@ -277,7 +277,30 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     * 承認を取り下げる
+     * 日報データの申請を取り下げる（管理者側のアクション）
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void approval_back() throws ServletException, IOException {
+
+        if (checkToken()) {
+
+            //idを条件に日報データを取得する
+            service.approvalbackInternal(toNumber(getRequestParam(AttributeConst.REP_ID)),
+                    getRequestParam(AttributeConst.REP_APPROVAL_STAFF));
+
+            //セッションに更新完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL_BACK.getMessage());
+
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+
+    }
+
+    /**
+     * 日報データの確定を取り下げる（管理者側のアクション）
      * @throws ServletException
      * @throws IOException
      */
@@ -300,7 +323,7 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     * 日報データの申請を行う
+     * 日報データの申請を行う（制作者側のアクション）
      * @throws ServletException
      * @throws IOException
      */
@@ -322,7 +345,7 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     * 日報データの申請を取り消す（制作者自身で）
+     * 日報データの申請を取り消す（制作者側のアクション）
      * @throws ServletException
      * @throws IOException
      */
